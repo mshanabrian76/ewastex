@@ -1,0 +1,463 @@
+/* =========================
+   E-WasteX Global Styles
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #06140f;
+    color: #ffffff;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+}
+
+
+/* =========================
+   SIDEBAR
+   ========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 220px;
+    height: 100vh;
+    background: #071b14;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    padding: 25px 15px;
+    z-index: 100;
+}
+
+.logo {
+    color: #55e58b;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 35px;
+    padding-left: 15px;
+}
+
+.logo span {
+    color: #ffffff;
+}
+
+.sidebar a {
+    display: block;
+    padding: 14px 15px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    color: #a9b9b1;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+    background: #123f2d;
+    color: #6cf19b;
+}
+
+.user-box {
+    position: absolute;
+    bottom: 25px;
+    left: 15px;
+    right: 15px;
+    background: #0d3023;
+    padding: 15px;
+    border-radius: 12px;
+    color: #b9c9c1;
+}
+
+
+/* =========================
+   MAIN CONTENT
+   ========================= */
+
+.main-content {
+    margin-left: 220px;
+    padding: 35px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1250px;
+    margin: auto;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-header h1 {
+    font-size: 32px;
+    margin-bottom: 8px;
+}
+
+.dashboard-header p {
+    color: #91a59b;
+}
+
+.greeting {
+    color: #ffffff;
+}
+
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.action-button {
+    display: inline-block;
+    background: #67e996;
+    color: #062015;
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-left: 8px;
+    transition: 0.2s;
+}
+
+.action-button:hover {
+    background: #8af5ae;
+    transform: translateY(-2px);
+}
+
+.action-button.secondary {
+    background: #1c4d38;
+    color: #7ef3a4;
+}
+
+
+/* =========================
+   QUICK ACTIONS
+   ========================= */
+
+.quick-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   STAT CARDS
+   ========================= */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #0b2119;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 25px;
+    min-height: 145px;
+}
+
+.stat-card:hover {
+    border-color: rgba(105,235,153,0.25);
+}
+
+.stat-card h3 {
+    color: #899c93;
+    font-size: 14px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+
+.stat-number {
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.stat-change {
+    color: #55e58b;
+    font-size: 13px;
+}
+
+
+/* =========================
+   CONTENT GRID
+   ========================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 22px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: #0b2119;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.card h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   RECENT DEVICES
+   ========================= */
+
+.device-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.device-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: #0e2b20;
+    border-radius: 10px;
+}
+
+.device-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.device-id {
+    font-size: 12px;
+    color: #7f968b;
+}
+
+.status {
+    padding: 7px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.status.registered {
+    background: #193c2d;
+    color: #6be995;
+}
+
+.status.processing {
+    background: #49351b;
+    color: #f1b861;
+}
+
+.status.recycled {
+    background: #16452d;
+    color: #69f09a;
+}
+
+
+/* =========================
+   REWARDS CARD
+   ========================= */
+
+.rewards-card {
+    background: #0b2119;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.rewards-card h2 {
+    margin-bottom: 15px;
+}
+
+.points {
+    font-size: 42px;
+    font-weight: bold;
+    color: #62ed91;
+    margin-bottom: 5px;
+}
+
+.points-label {
+    color: #899c93;
+}
+
+.progress {
+    width: 100%;
+    height: 8px;
+    background: #19352a;
+    border-radius: 10px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 100%;
+    width: 70%;
+    background: #62ed91;
+    border-radius: 10px;
+}
+
+
+/* =========================
+   TRACKING
+   ========================= */
+
+.tracking-card {
+    background: #0b2119;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    position: relative;
+}
+
+.timeline-step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+}
+
+.timeline-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #345147;
+    margin: auto auto 10px;
+}
+
+.timeline-step.completed .timeline-dot {
+    background: #62ed91;
+}
+
+.timeline-step p {
+    font-size: 11px;
+    color: #91a59b;
+}
+
+
+/* =========================
+   IMPACT
+   ========================= */
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.impact-card {
+    background: #0b2119;
+    padding: 25px;
+    border-radius: 16px;
+}
+
+.impact-card h3 {
+    color: #8da198;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.impact-value {
+    font-size: 30px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+
+/* =========================
+   PICKUP
+   ========================= */
+
+.pickup-card {
+    background: #0b2119;
+    border-radius: 16px;
+    padding: 25px;
+}
+
+.pickup-card p {
+    color: #91a59b;
+    margin-bottom: 8px;
+}
+
+.pickup-date {
+    color: #65ed94;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 1000px) {
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .action-button {
+        margin-left: 0;
+        margin-right: 5px;
+        margin-bottom: 8px;
+    }
+}
