@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-WasteX | Register Device</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body {
+            background: #07130e;
+        }
+
+        .register-page {
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 40px 20px;
+        }
+
+        .register-container {
+            width: 100%;
+            max-width: 850px;
+        }
+
+        .back-link {
+            display: inline-block;
+
+            color: #82948b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            color: #48d597;
+        }
+
+        .register-header {
+            margin-bottom: 30px;
+        }
+
+        .register-header h1 {
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+        .register-header h1 span {
+            color: #48d597;
+        }
+
+        .register-header p {
+            color: #819087;
+
+            font-size: 14px;
+        }
+
+        .register-card {
+            background: #0c1d15;
+
+            border: 1px solid #1b3328;
+
+            border-radius: 20px;
+
+            padding: 35px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 12px;
+
+            color: #b6c5bd;
+
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+
+            padding: 14px;
+
+            background: #081810;
+
+            border: 1px solid #263e31;
+
+            border-radius: 9px;
+
+            color: white;
+
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #48d597;
+        }
+
+        .form-group textarea {
+            min-height: 100px;
+
+            resize: vertical;
+        }
+
+        .form-help {
+            color: #687a71;
+
+            font-size: 10px;
+        }
+
+        .register-button {
+            width: 100%;
+
+            border: none;
+
+            background: #48d597;
+
+            color: #06120d;
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            font-weight: 800;
+
+            cursor: pointer;
+
+            margin-top: 25px;
+        }
+
+        .register-button:hover {
+            opacity: 0.9;
+        }
+
+
+        /* SUCCESS MESSAGE */
+
+        .success-message {
+            display: none;
+
+            text-align: center;
+
+            padding: 40px 20px;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            background: #48d597;
+
+            color: #06120d;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .success-message h2 {
+            font-size: 27px;
+
+            margin-bottom: 10px;
+        }
+
+        .success-message p {
+            color: #819087;
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        .tracking-box {
+            background: #10251a;
+
+            border: 1px dashed #48d597;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .tracking-box small {
+            display: block;
+
+            color: #75877e;
+
+            font-size: 10px;
+
+            margin-bottom: 8px;
+        }
+
+        .tracking-box strong {
+            color: #48d597;
+
+            font-size: 22px;
+
+            letter-spacing: 1px;
+        }
+
+        .success-buttons {
+            display: flex;
+
+            justify-content: center;
+
+            gap: 12px;
+        }
+
+        .success-buttons a {
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .dashboard-button {
+            background: #48d597;
+
+            color: #06120d;
+        }
+
+        .track-button {
+            background: #12271c;
+
+            border: 1px solid #294638;
+
+            color: #48d597;
+        }
+
+
+        @media(max-width: 650px) {
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .register-card {
+                padding: 25px 20px;
+            }
+
+            .register-header h1 {
+                font-size: 30px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="register-page">
+
+    <div class="register-container">
+
+
+        <!-- BACK -->
+
+        <a href="dashboard.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <!-- HEADER -->
+
+        <div class="register-header">
+
+            <div class="badge">
+                ♻️ Responsible Disposal
+            </div>
+
+            <h1>
+                Register Your <span>E-Waste</span>
+            </h1>
+
+            <p>
+                Give your electronic device a digital identity
+                and start tracking its recycling journey.
+            </p>
+
+        </div>
+
+
+        <!-- CARD -->
+
+        <div class="register-card">
+
+
+            <!-- FORM -->
+
+            <form id="deviceForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- DEVICE TYPE -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Device Type
+                        </label>
+
+                        <select id="deviceType" required>
+
+                            <option value="">
+                                Select device type
+                            </option>
+
+                            <option value="Smartphone">
+                                Smartphone
+                            </option>
+
+                            <option value="Laptop">
+                                Laptop
+                            </option>
+
+                            <option value="Tablet">
+                                Tablet
+                            </option>
+
+                            <option value="Television">
+                                Television
+                            </option>
+
+                            <option value="Monitor">
+                                Monitor
+                            </option>
+
+                            <option value="Printer">
+                                Printer
+                            </option>
+
+                            <option value="Keyboard">
+                                Keyboard
+                            </option>
+
+                            <option value="Headphones">
+                                Headphones
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- BRAND -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Brand
+                        </label>
+
+                        <input
+                            type="text"
+                            id="brand"
+                            placeholder="e.g. Samsung"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- MODEL -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Model
+                        </label>
+
+                        <input
+                            type="text"
+                            id="model"
+                            placeholder="e.g. Galaxy S21"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- CONDITION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Device Condition
+                        </label>
+
+                        <select id="condition" required>
+
+                            <option value="">
+                                Select condition
+                            </option>
+
+                            <option value="Working">
+                                Working
+                            </option>
+
+                            <option value="Damaged">
+                                Damaged
+                            </option>
+
+                            <option value="Broken">
+                                Broken
+                            </option>
+
+                            <option value="Not Working">
+                                Not Working
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- WEIGHT -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Estimated Weight (kg)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="weight"
+                            placeholder="e.g. 0.4"
+                            step="0.1"
+                            min="0"
+                            required
+                        >
+
+                        <span class="form-help">
+                            Approximate weight is enough.
+                        </span>
+
+                    </div>
+
+
+                    <!-- PICKUP LOCATION -->
+
+                    <div class="form-group">
+
+                        <label>
+                            Pickup Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="location"
+                            placeholder="e.g. Green Valley"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <div class="form-group full">
+
+                        <label>
+                            Additional Information
+                        </label>
+
+                        <textarea
+                            id="description"
+                            placeholder="Tell us anything important about the device..."
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- SUBMIT -->
+
+                <button
+                    type="submit"
+                    class="register-button"
+                >
+
+                    Register Device & Generate Tracking ID →
+
+                </button>
+
+
+            </form>
+
+
+
+            <!-- SUCCESS -->
+
+            <div
+                class="success-message"
+                id="successMessage"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    Device Registered Successfully!
+                </h2>
+
+                <p>
+                    Your device now has a digital identity.
+                    You can use the tracking ID to follow its recycling journey.
+                </p>
+
+
+                <div class="tracking-box">
+
+                    <small>
+                        YOUR UNIQUE TRACKING ID
+                    </small>
+
+                    <strong id="trackingId">
+                        EW-2026-00001
+                    </strong>
+
+                </div>
+
+
+                <div class="success-buttons">
+
+                    <a
+                        href="dashboard.html"
+                        class="dashboard-button"
+                    >
+                        Go to Dashboard
+                    </a>
+
+                    <a
+                        href="track.html"
+                        class="track-button"
+                        id="trackDevice"
+                    >
+                        Track Device
+                    </a>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    const deviceForm =
+        document.getElementById("deviceForm");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+    const trackingIdElement =
+        document.getElementById("trackingId");
+
+
+    deviceForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        /* GET FORM VALUES */
+
+        const deviceType =
+            document.getElementById("deviceType").value;
+
+        const brand =
+            document.getElementById("brand").value;
+
+        const model =
+            document.getElementById("model").value;
+
+        const condition =
+            document.getElementById("condition").value;
+
+        const weight =
+            document.getElementById("weight").value;
+
+        const location =
+            document.getElementById("location").value;
+
+        const description =
+            document.getElementById("description").value;
+
+
+        /* CREATE UNIQUE ID */
+
+        const randomNumber =
+            Math.floor(10000 + Math.random() * 90000);
+
+        const trackingID =
+            "EW-2026-" + randomNumber;
+
+
+        /* CREATE DEVICE OBJECT */
+
+        const device = {
+
+            id: trackingID,
+
+            type: deviceType,
+
+            brand: brand,
+
+            model: model,
+
+            condition: condition,
+
+            weight: weight,
+
+            location: location,
+
+            description: description,
+
+            status: "Registered",
+
+            date: new Date().toLocaleString(),
+
+            reward: 0
+
+        };
+
+
+        /* SAVE DEVICE */
+
+        localStorage.setItem(
+            "ewasteDevice",
+            JSON.stringify(device)
+        );
+
+
+        /* SHOW SUCCESS */
+
+        trackingIdElement.textContent =
+            trackingID;
+
+        deviceForm.style.display = "none";
+
+        successMessage.style.display = "block";
+
+
+        console.log("Device registered:", device);
+
+    });
+
+</script>
+
+
+</body>
+
+</html>

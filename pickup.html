@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-WasteX | Schedule Pickup</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body {
+            background: #07130e;
+        }
+
+        .pickup-page {
+            min-height: 100vh;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 40px 20px;
+        }
+
+        .pickup-container {
+            width: 100%;
+
+            max-width: 850px;
+        }
+
+        .back-link {
+            color: #82948b;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            display: inline-block;
+
+            margin-bottom: 25px;
+        }
+
+        .back-link:hover {
+            color: #48d597;
+        }
+
+        .pickup-header {
+            margin-bottom: 30px;
+        }
+
+        .pickup-header h1 {
+            font-size: 38px;
+
+            margin-bottom: 10px;
+        }
+
+        .pickup-header h1 span {
+            color: #48d597;
+        }
+
+        .pickup-header p {
+            color: #819087;
+
+            font-size: 14px;
+        }
+
+        .pickup-card {
+            background: #0c1d15;
+
+            border: 1px solid #1b3328;
+
+            border-radius: 20px;
+
+            padding: 35px;
+        }
+
+        .device-summary {
+            background: #10251a;
+
+            border: 1px solid #244434;
+
+            border-radius: 12px;
+
+            padding: 18px;
+
+            margin-bottom: 25px;
+        }
+
+        .device-summary small {
+            color: #73857c;
+
+            font-size: 10px;
+        }
+
+        .device-summary strong {
+            display: block;
+
+            color: #48d597;
+
+            margin-top: 5px;
+        }
+
+        .form-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 22px;
+        }
+
+        .form-group {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            color: #b6c5bd;
+
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 14px;
+
+            background: #081810;
+
+            color: white;
+
+            border: 1px solid #263e31;
+
+            border-radius: 9px;
+
+            outline: none;
+
+            font-size: 13px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #48d597;
+        }
+
+        textarea {
+            min-height: 90px;
+
+            resize: vertical;
+        }
+
+        .pickup-button {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 15px;
+
+            background: #48d597;
+
+            border: none;
+
+            border-radius: 10px;
+
+            color: #06120d;
+
+            font-weight: 800;
+
+            cursor: pointer;
+        }
+
+
+        /* SUCCESS */
+
+        .success {
+
+            display: none;
+
+            text-align: center;
+
+            padding: 30px 10px;
+        }
+
+        .success-icon {
+
+            width: 70px;
+
+            height: 70px;
+
+            margin: 0 auto 20px;
+
+            background: #48d597;
+
+            color: #06120d;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .success h2 {
+
+            margin-bottom: 10px;
+        }
+
+        .success p {
+
+            color: #819087;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .pickup-details {
+
+            background: #10251a;
+
+            border: 1px dashed #48d597;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            margin-bottom: 25px;
+        }
+
+        .pickup-details strong {
+
+            color: #48d597;
+
+            font-size: 18px;
+        }
+
+        .dashboard-button {
+
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            background: #48d597;
+
+            color: #06120d;
+
+            text-decoration: none;
+
+            border-radius: 9px;
+
+            font-weight: 700;
+
+            font-size: 12px;
+        }
+
+
+        @media(max-width:650px) {
+
+            .form-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+
+                grid-column: auto;
+            }
+
+            .pickup-card {
+
+                padding: 25px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="pickup-page">
+
+    <div class="pickup-container">
+
+
+        <a href="dashboard.html" class="back-link">
+            ← Back to Dashboard
+        </a>
+
+
+        <div class="pickup-header">
+
+            <div class="badge">
+                📍 Collection Service
+            </div>
+
+            <h1>
+                Schedule Your <span>Pickup</span>
+            </h1>
+
+            <p>
+                Choose a convenient date and time for your e-waste
+                to be collected by a registered collection hub.
+            </p>
+
+        </div>
+
+
+        <div class="pickup-card">
+
+
+            <!-- DEVICE -->
+
+            <div class="device-summary">
+
+                <small>
+                    DEVICE BEING COLLECTED
+                </small>
+
+                <strong id="deviceDisplay">
+                    Your registered device
+                </strong>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="pickupForm">
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Pickup Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="pickupDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Preferred Time
+                        </label>
+
+                        <select
+                            id="pickupTime"
+                            required
+                        >
+
+                            <option value="">
+                                Select time
+                            </option>
+
+                            <option>
+                                10:00 AM - 12:00 PM
+                            </option>
+
+                            <option>
+                                12:00 PM - 2:00 PM
+                            </option>
+
+                            <option>
+                                2:00 PM - 4:00 PM
+                            </option>
+
+                            <option>
+                                4:00 PM - 6:00 PM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Pickup Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            placeholder="Enter your pickup address"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Contact Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            placeholder="+91 XXXXX XXXXX"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Collection Preference
+                        </label>
+
+                        <select
+                            id="preference"
+                            required
+                        >
+
+                            <option value="">
+                                Select option
+                            </option>
+
+                            <option>
+                                Doorstep Pickup
+                            </option>
+
+                            <option>
+                                Drop at Collection Hub
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Additional Instructions
+                        </label>
+
+                        <textarea
+                            id="instructions"
+                            placeholder="Any instructions for the collection team?"
+                        ></textarea>
+
+                    </div>
+
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="pickup-button"
+                >
+
+                    Confirm Pickup →
+
+                </button>
+
+
+            </form>
+
+
+            <!-- SUCCESS -->
+
+            <div
+                class="success"
+                id="success"
+            >
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <h2>
+                    Pickup Scheduled!
+                </h2>
+
+                <p>
+                    Your collection request has been created.
+                </p>
+
+
+                <div class="pickup-details">
+
+                    <strong id="pickupConfirmation">
+                        Pickup confirmed
+                    </strong>
+
+                </div>
+
+
+                <a
+                    href="dashboard.html"
+                    class="dashboard-button"
+                >
+                    Return to Dashboard
+                </a>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+    /*
+       LOAD REGISTERED DEVICE
+    */
+
+    const savedDevice =
+        JSON.parse(
+            localStorage.getItem("ewasteDevice")
+        );
+
+
+    if (savedDevice) {
+
+        document.getElementById(
+            "deviceDisplay"
+        ).textContent =
+
+            savedDevice.brand +
+            " " +
+            savedDevice.model +
+            " • " +
+            savedDevice.id;
+
+    }
+
+
+    /*
+       FORM SUBMISSION
+    */
+
+    const pickupForm =
+        document.getElementById("pickupForm");
+
+
+    pickupForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const pickupDate =
+                document.getElementById(
+                    "pickupDate"
+                ).value;
+
+
+            const pickupTime =
+                document.getElementById(
+                    "pickupTime"
+                ).value;
+
+
+            const address =
+                document.getElementById(
+                    "address"
+                ).value;
+
+
+            const phone =
+                document.getElementById(
+                    "phone"
+                ).value;
+
+
+            /*
+               CREATE PICKUP
+            */
+
+            const pickup = {
+
+                date: pickupDate,
+
+                time: pickupTime,
+
+                address: address,
+
+                phone: phone,
+
+                status: "Pickup Scheduled"
+
+            };
+
+
+            /*
+               SAVE PICKUP
+            */
+
+            localStorage.setItem(
+                "ewastePickup",
+                JSON.stringify(pickup)
+            );
+
+
+            /*
+               UPDATE DEVICE STATUS
+            */
+
+            if (savedDevice) {
+
+                savedDevice.status =
+                    "Pickup Scheduled";
+
+                localStorage.setItem(
+                    "ewasteDevice",
+                    JSON.stringify(savedDevice)
+                );
+
+            }
+
+
+            /*
+               SHOW SUCCESS
+            */
+
+            document.getElementById(
+                "pickupConfirmation"
+            ).textContent =
+
+                "Pickup: " +
+                pickupDate +
+                " • " +
+                pickupTime;
+
+
+            pickupForm.style.display =
+                "none";
+
+
+            document.getElementById(
+                "success"
+            ).style.display =
+                "block";
+
+        }
+
+    );
+
+</script>
+
+
+</body>
+
+</html>

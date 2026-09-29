@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-WasteX | Dashboard</title>
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Dashboard CSS -->
+    <style>
+
+        body {
+            background: #07130e;
+        }
+
+        /* DASHBOARD LAYOUT */
+
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+
+        /* SIDEBAR */
+
+        .sidebar {
+            width: 250px;
+            background: #0a1912;
+            border-right: 1px solid #1a3025;
+
+            padding: 25px 18px;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+        }
+
+        .sidebar-logo {
+            font-size: 23px;
+            font-weight: 800;
+
+            padding: 10px 15px 35px;
+        }
+
+        .sidebar-logo span {
+            color: #48d597;
+        }
+
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+
+            color: #82948b;
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            font-size: 14px;
+
+            transition: 0.3s;
+        }
+
+        .sidebar-menu a:hover {
+            background: #12271c;
+            color: #48d597;
+        }
+
+        .sidebar-menu a.active {
+            background: #163525;
+            color: #48d597;
+        }
+
+
+        .sidebar-bottom {
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 18px;
+            right: 18px;
+        }
+
+        .user-mini {
+            background: #10241a;
+
+            padding: 13px;
+
+            border-radius: 12px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 38px;
+            height: 38px;
+
+            background: #48d597;
+
+            color: #07130e;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-weight: bold;
+        }
+
+        .user-mini strong {
+            font-size: 13px;
+        }
+
+        .user-mini small {
+            color: #75867d;
+            font-size: 11px;
+        }
+
+
+        /* MAIN CONTENT */
+
+        .dashboard-main {
+            margin-left: 250px;
+
+            width: calc(100% - 250px);
+
+            padding: 35px 45px;
+        }
+
+
+        /* TOP BAR */
+
+        .dashboard-top {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 35px;
+        }
+
+        .dashboard-top h1 {
+            font-size: 28px;
+
+            margin-bottom: 5px;
+        }
+
+        .dashboard-top p {
+            color: #819087;
+
+            font-size: 14px;
+        }
+
+        .notification {
+            width: 42px;
+            height: 42px;
+
+            border: 1px solid #243c30;
+
+            border-radius: 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            cursor: pointer;
+        }
+
+
+        /* ACTION BUTTONS */
+
+        .quick-actions {
+            display: flex;
+
+            gap: 12px;
+        }
+
+        .action-button {
+            background: #48d597;
+
+            color: #06120d;
+
+            padding: 12px 18px;
+
+            border-radius: 9px;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+        .action-button.secondary {
+            background: #12271c;
+
+            color: #48d597;
+
+            border: 1px solid #234535;
+        }
+
+
+        /* STAT CARDS */
+
+        .dashboard-stats {
+
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+
+            background: #0c1d15;
+
+            border: 1px solid #1b3328;
+
+            border-radius: 15px;
+
+            padding: 22px;
+        }
+
+        .stat-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 15px;
+        }
+
+        .stat-icon {
+
+            width: 40px;
+            height: 40px;
+
+            border-radius: 10px;
+
+            background: #143025;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 18px;
+        }
+
+        .stat-card h2 {
+
+            font-size: 28px;
+
+            margin-bottom: 3px;
+        }
+
+        .stat-card p {
+
+            color: #778980;
+
+            font-size: 12px;
+        }
+
+        .stat-change {
+
+            color: #48d597;
+
+            font-size: 11px;
+        }
+
+
+        /* MAIN GRID */
+
+        .dashboard-grid {
+
+            display: grid;
+
+            grid-template-columns: 1.6fr 1fr;
+
+            gap: 20px;
+        }
+
+
+        /* GENERAL CARD */
+
+        .dashboard-card {
+
+            background: #0c1d15;
+
+            border: 1px solid #1b3328;
+
+            border-radius: 15px;
+
+            padding: 24px;
+
+            margin-bottom: 20px;
+        }
+
+        .card-heading {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin-bottom: 22px;
+        }
+
+        .card-heading h2 {
+
+            font-size: 17px;
+        }
+
+        .card-heading a {
+
+            color: #48d597;
+
+            text-decoration: none;
+
+            font-size: 12px;
+        }
+
+
+        /* DEVICE */
+
+        .device {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 14px;
+
+            padding: 15px 0;
+
+            border-bottom: 1px solid #192d23;
+        }
+
+        .device:last-child {
+
+            border-bottom: none;
+        }
+
+        .device-icon {
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 10px;
+
+            background: #153024;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 20px;
+        }
+
+        .device-info {
+
+            flex: 1;
+        }
+
+        .device-info strong {
+
+            display: block;
+
+            font-size: 13px;
+
+            margin-bottom: 3px;
+        }
+
+        .device-info small {
+
+            color: #718178;
+
+            font-size: 11px;
+        }
+
+
+        /* STATUS */
+
+        .device-status {
+
+            padding: 6px 9px;
+
+            border-radius: 20px;
+
+            font-size: 10px;
+
+            background: #183527;
+
+            color: #48d597;
+        }
+
+        .device-status.processing {
+
+            color: #e6c56a;
+
+            background: #332d17;
+        }
+
+
+        /* TRACKING */
+
+        .tracking-id {
+
+            background: #10251a;
+
+            border: 1px dashed #315440;
+
+            padding: 18px;
+
+            border-radius: 10px;
+
+            margin-bottom: 20px;
+
+            text-align: center;
+        }
+
+        .tracking-id small {
+
+            display: block;
+
+            color: #73847b;
+
+            font-size: 11px;
+
+            margin-bottom: 5px;
+        }
+
+        .tracking-id strong {
+
+            color: #48d597;
+
+            font-size: 18px;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* TRACKING STEPS */
+
+        .tracking-step {
+
+            display: flex;
+
+            gap: 15px;
+
+            position: relative;
+
+            padding-bottom: 20px;
+        }
+
+        .tracking-step:last-child {
+
+            padding-bottom: 0;
+        }
+
+        .tracking-dot {
+
+            width: 28px;
+            height: 28px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #193326;
+
+            color: #71847a;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 11px;
+
+            z-index: 2;
+        }
+
+        .tracking-step.completed .tracking-dot {
+
+            background: #48d597;
+
+            color: #06120d;
+        }
+
+        .tracking-line {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 28px;
+
+            width: 2px;
+
+            height: 35px;
+
+            background: #294438;
+        }
+
+        .tracking-step:last-child .tracking-line {
+
+            display: none;
+        }
+
+        .tracking-content strong {
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 3px;
+        }
+
+        .tracking-content small {
+
+            color: #718178;
+
+            font-size: 10px;
+        }
+
+
+        /* REWARD CARD */
+
+        .reward-card {
+
+            background: linear-gradient(
+                135deg,
+                #123425,
+                #0c1d15
+            );
+
+            border: 1px solid #27553e;
+
+            border-radius: 15px;
+
+            padding: 25px;
+
+            margin-bottom: 20px;
+        }
+
+        .reward-card h3 {
+
+            font-size: 14px;
+
+            color: #9aaba2;
+
+        }
+
+        .points {
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            color: #48d597;
+
+            margin: 10px 0;
+        }
+
+        .points span {
+
+            font-size: 13px;
+
+            color: #84958c;
+
+        }
+
+        .reward-progress {
+
+            height: 7px;
+
+            background: #1d3b2c;
+
+            border-radius: 20px;
+
+            overflow: hidden;
+
+            margin: 15px 0 8px;
+        }
+
+        .reward-progress div {
+
+            width: 74%;
+
+            height: 100%;
+
+            background: #48d597;
+        }
+
+        .reward-card small {
+
+            color: #73857c;
+
+            font-size: 10px;
+        }
+
+
+        /* IMPACT CARD */
+
+        .impact-mini {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            padding: 14px 0;
+
+            border-bottom: 1px solid #1b3025;
+        }
+
+        .impact-mini:last-child {
+
+            border-bottom: none;
+        }
+
+        .impact-mini span {
+
+            color: #819087;
+
+            font-size: 12px;
+        }
+
+        .impact-mini strong {
+
+            color: #48d597;
+
+            font-size: 14px;
+        }
+
+
+        /* MOBILE */
+
+        @media(max-width: 1000px) {
+
+            .dashboard-stats {
+
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+
+                grid-template-columns: 1fr;
+            }
+        }
+
+
+        @media(max-width: 700px) {
+
+            .sidebar {
+
+                width: 70px;
+
+                padding: 15px 10px;
+            }
+
+            .sidebar-logo {
+
+                font-size: 0;
+            }
+
+            .sidebar-logo:first-letter {
+
+                font-size: 25px;
+            }
+
+            .sidebar-menu a {
+
+                font-size: 0;
+
+                text-align: center;
+            }
+
+            .dashboard-main {
+
+                margin-left: 70px;
+
+                width: calc(100% - 70px);
+
+                padding: 25px 15px;
+            }
+
+            .dashboard-stats {
+
+                grid-template-columns: 1fr;
+            }
+
+            .quick-actions {
+
+                display: none;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard-container">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            ♻️ E-Waste<span>X</span>
+        </div>
+
+
+        <div class="sidebar-menu">
+
+            <a href="dashboard.html" class="active">
+                🏠 &nbsp; Dashboard
+            </a>
+
+            <a href="#">
+                📱 &nbsp; My Devices
+            </a>
+
+            <a href="#">
+                📍 &nbsp; Track Device
+            </a>
+
+            <a href="#">
+                📅 &nbsp; Pickups
+            </a>
+
+            <a href="#">
+                🎁 &nbsp; Rewards
+            </a>
+
+            <a href="#">
+                📊 &nbsp; My Impact
+            </a>
+
+            <a href="#">
+                ⚙️ &nbsp; Settings
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="user-mini">
+
+                <div class="user-avatar">
+                    B
+                </div>
+
+                <div>
+
+                    <strong>Brian</strong>
+
+                    <small>Eco Member</small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- MAIN DASHBOARD -->
+
+    <main class="dashboard-main">
+
+
+        <!-- TOP -->
+
+        <div class="dashboard-top">
+
+            <div>
+
+                <h1>
+                    Good evening, Brian 👋
+                </h1>
+
+                <p>
+                    Here's your recycling activity and environmental impact.
+                </p>
+
+            </div>
+
+
+            <div class="quick-actions">
+                <a href="register.html" class="action-button">
+                     Register Device
+                </a>
+                <a href="track.html" class="action-button">
+                    Track device
+                </a>
+
+                <a href="pickup.html" class="action-button secondary">
+                    📅 Schedule Pickup
+                </a>
+                <a href="hub.html" class="action-button">
+                    Collection Hub
+                </a>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- STATISTICS -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        📱
+                    </div>
+
+                    <span class="stat-change">
+                        +2 this month
+                    </span>
+
+                </div>
+
+                <h2>7</h2>
+
+                <p>
+                    Devices Recycled
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        🎁
+                    </div>
+
+                    <span class="stat-change">
+                        +350 today
+                    </span>
+
+                </div>
+
+                <h2>2,450</h2>
+
+                <p>
+                    Green Points
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        ♻️
+                    </div>
+
+                    <span class="stat-change">
+                        +2.1 kg
+                    </span>
+
+                </div>
+
+                <h2>8.4 kg</h2>
+
+                <p>
+                    E-Waste Diverted
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        🌱
+                    </div>
+
+                    <span class="stat-change">
+                        Growing
+                    </span>
+
+                </div>
+
+                <h2>Eco</h2>
+
+                <p>
+                    Recycler Level
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- MAIN GRID -->
+
+        <div class="dashboard-grid">
+
+
+            <!-- LEFT COLUMN -->
+
+            <div>
+
+
+                <!-- RECENT DEVICES -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            My Recent Devices
+                        </h2>
+
+                        <a href="#">
+                            View all →
+                        </a>
+
+                    </div>
+
+
+                    <!-- DEVICE 1 -->
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            💻
+                        </div>
+
+                        <div class="device-info">
+
+                            <strong>
+                                Dell Inspiron Laptop
+                            </strong>
+
+                            <small>
+                                EW-2026-00124 • 2.1 kg
+                            </small>
+
+                        </div>
+
+                        <span class="device-status processing">
+                            Processing
+                        </span>
+
+                    </div>
+
+
+                    <!-- DEVICE 2 -->
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            📱
+                        </div>
+
+                        <div class="device-info">
+
+                            <strong>
+                                Samsung Galaxy S21
+                            </strong>
+
+                            <small>
+                                EW-2026-00118 • 0.4 kg
+                            </small>
+
+                        </div>
+
+                        <span class="device-status">
+                            Recycled
+                        </span>
+
+                    </div>
+
+
+                    <!-- DEVICE 3 -->
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            🎧
+                        </div>
+
+                        <div class="device-info">
+
+                            <strong>
+                                Wireless Headphones
+                            </strong>
+
+                            <small>
+                                EW-2026-00105 • 0.3 kg
+                            </small>
+
+                        </div>
+
+                        <span class="device-status">
+                            Recycled
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- TRACKING -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Live Device Tracking
+                        </h2>
+
+                        <a href="#">
+                            Full tracking →
+                        </a>
+
+                    </div>
+
+
+                    <div class="tracking-id">
+
+                        <small>
+                            Currently tracking
+                        </small>
+
+                        <strong>
+                            EW-2026-00124
+                        </strong>
+
+                    </div>
+
+
+                    <!-- STEP 1 -->
+
+                    <div class="tracking-step completed">
+
+                        <div class="tracking-dot">
+                            ✓
+                        </div>
+
+                        <div class="tracking-line"></div>
+
+                        <div class="tracking-content">
+
+                            <strong>
+                                Device Registered
+                            </strong>
+
+                            <small>
+                                Today • 10:20 AM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 2 -->
+
+                    <div class="tracking-step completed">
+
+                        <div class="tracking-dot">
+                            ✓
+                        </div>
+
+                        <div class="tracking-line"></div>
+
+                        <div class="tracking-content">
+
+                            <strong>
+                                Collected by Hub #04
+                            </strong>
+
+                            <small>
+                                Today • 1:45 PM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 3 -->
+
+                    <div class="tracking-step completed">
+
+                        <div class="tracking-dot">
+                            ✓
+                        </div>
+
+                        <div class="tracking-line"></div>
+
+                        <div class="tracking-content">
+
+                            <strong>
+                                Received at Certified Recycler
+                            </strong>
+
+                            <small>
+                                Today • 4:10 PM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 4 -->
+
+                    <div class="tracking-step">
+
+                        <div class="tracking-dot">
+                            4
+                        </div>
+
+                        <div class="tracking-line"></div>
+
+                        <div class="tracking-content">
+
+                            <strong>
+                                Processing
+                            </strong>
+
+                            <small>
+                                Currently in progress
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STEP 5 -->
+
+                    <div class="tracking-step">
+
+                        <div class="tracking-dot">
+                            5
+                        </div>
+
+                        <div class="tracking-content">
+
+                            <strong>
+                                Recycling Completed
+                            </strong>
+
+                            <small>
+                                Waiting for processing
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RIGHT COLUMN -->
+
+            <div>
+
+
+                <!-- REWARDS -->
+
+                <div class="reward-card">
+
+                    <h3>
+                        ♻️ YOUR GREEN REWARDS
+                    </h3>
+
+                    <div class="points">
+
+                        2,450
+
+                        <span>
+                            points
+                        </span>
+
+                    </div>
+
+                    <p>
+                        Eco Champion
+                    </p>
+
+
+                    <div class="reward-progress">
+
+                        <div></div>
+
+                    </div>
+
+                    <small>
+                        550 points until your next reward level
+                    </small>
+
+                </div>
+
+
+
+                <!-- IMPACT -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Your Impact
+                        </h2>
+
+                        <a href="#">
+                            Details
+                        </a>
+
+                    </div>
+
+
+                    <div class="impact-mini">
+
+                        <span>
+                            Devices recycled
+                        </span>
+
+                        <strong>
+                            7
+                        </strong>
+
+                    </div>
+
+
+                    <div class="impact-mini">
+
+                        <span>
+                            E-waste diverted
+                        </span>
+
+                        <strong>
+                            8.4 kg
+                        </strong>
+
+                    </div>
+
+
+                    <div class="impact-mini">
+
+                        <span>
+                            Pickups completed
+                        </span>
+
+                        <strong>
+                            6
+                        </strong>
+
+                    </div>
+
+
+                    <div class="impact-mini">
+
+                        <span>
+                            Current streak
+                        </span>
+
+                        <strong>
+                            4 weeks
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- NEXT PICKUP -->
+
+                <div class="dashboard-card">
+
+                    <div class="card-heading">
+
+                        <h2>
+                            Next Pickup
+                        </h2>
+
+                    </div>
+
+
+                    <div class="device">
+
+                        <div class="device-icon">
+                            📦
+                        </div>
+
+                        <div class="device-info">
+
+                            <strong>
+                                Electronics Collection
+                            </strong>
+
+                            <small>
+                                Tomorrow • 2:00 PM
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <p style="
+                        color:#718178;
+                        font-size:11px;
+                        margin-top:12px;
+                    ">
+
+                        📍 Green Valley Collection Point
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+</body>
+
+</html>

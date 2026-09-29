@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-WasteX | Track Device</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f8f5;
+            color: #173b2a;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            background: #0b3d2e;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: white;
+            border: 1px solid #ffffff55;
+            padding: 9px 18px;
+            border-radius: 8px;
+        }
+
+        .back-btn:hover {
+            background: #ffffff15;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 40px auto;
+        }
+
+        .page-title {
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #68756e;
+        }
+
+        /* DEVICE CARD */
+
+        .device-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+            margin-bottom: 30px;
+        }
+
+        .device-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .device-header h2 {
+            margin-bottom: 7px;
+        }
+
+        .tracking-id {
+            color: #718078;
+            font-size: 14px;
+        }
+
+        .status {
+            background: #e5f7ed;
+            color: #16834b;
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+
+        /* LIFECYCLE */
+
+        .section-title {
+            margin-bottom: 20px;
+        }
+
+        .timeline {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            min-height: 75px;
+        }
+
+        .timeline-item:last-child {
+            min-height: 50px;
+        }
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 3px solid #cbd5cf;
+            background: white;
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .completed .circle {
+            background: #16834b;
+            border-color: #16834b;
+        }
+
+        .current .circle {
+            background: #f0a500;
+            border-color: #f0a500;
+        }
+
+        .line {
+            position: absolute;
+            left: 13px;
+            top: 30px;
+            width: 4px;
+            height: 48px;
+            background: #dce5df;
+        }
+
+        .completed .line {
+            background: #16834b;
+        }
+
+        .timeline-content {
+            margin-left: 20px;
+        }
+
+        .timeline-content h3 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            color: #7a857f;
+            font-size: 14px;
+        }
+
+        /* DEVICE INFORMATION */
+
+        .info-section {
+            margin-top: 30px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .info-box span {
+            display: block;
+            color: #7a857f;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+
+        .info-box strong {
+            font-size: 16px;
+        }
+
+        /* REWARD */
+
+        .reward {
+            margin-top: 30px;
+            background: #0b3d2e;
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reward h2 {
+            margin-bottom: 6px;
+        }
+
+        .reward p {
+            color: #c9ddd4;
+        }
+
+        .points {
+            font-size: 30px;
+            font-weight: bold;
+        }
+
+        /* NO DEVICE */
+
+        .no-device {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+        }
+
+        .no-device h2 {
+            margin-bottom: 10px;
+        }
+
+        .no-device p {
+            color: #68756e;
+            margin-bottom: 20px;
+        }
+
+        .register-btn {
+            display: inline-block;
+            background: #16834b;
+            color: white;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .container {
+                width: 92%;
+                margin: 25px auto;
+            }
+
+            .device-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .reward {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            E-WasteX
+        </div>
+
+        <a href="dashboard.html" class="back-btn">
+            ← Dashboard
+        </a>
+
+    </nav>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="container">
+
+        <div class="page-title">
+
+            <h1>Device Tracking</h1>
+
+            <p>
+                Track your e-waste from registration to responsible recycling.
+            </p>
+
+        </div>
+
+
+        <!-- DEVICE INFORMATION -->
+
+        <div id="deviceArea">
+
+            <!-- JavaScript will put the device here -->
+
+        </div>
+
+
+        <!-- LIFECYCLE -->
+
+        <h2 class="section-title">
+            Device Lifecycle
+        </h2>
+
+        <div class="timeline">
+
+            <!-- REGISTERED -->
+
+            <div class="timeline-item completed" id="registered">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Device Registered</h3>
+
+                    <p>
+                        Your device has been registered in the E-WasteX system.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PICKUP -->
+
+            <div class="timeline-item" id="pickup">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Pickup Scheduled</h3>
+
+                    <p>
+                        Waiting for pickup to be scheduled.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- COLLECTED -->
+
+            <div class="timeline-item" id="collected">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Device Collected</h3>
+
+                    <p>
+                        The e-waste has been collected.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- HUB -->
+
+            <div class="timeline-item" id="hub">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Collection Hub</h3>
+
+                    <p>
+                        Device received at the collection hub.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECYCLER -->
+
+            <div class="timeline-item" id="recycler">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Certified Recycler</h3>
+
+                    <p>
+                        Device transferred to a certified recycling facility.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PROCESSING -->
+
+            <div class="timeline-item" id="processing">
+
+                <div class="circle"></div>
+
+                <div class="line"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Processing</h3>
+
+                    <p>
+                        Device is being dismantled and processed.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECYCLED -->
+
+            <div class="timeline-item" id="recycled">
+
+                <div class="circle"></div>
+
+                <div class="timeline-content">
+
+                    <h3>Recycling Completed</h3>
+
+                    <p>
+                        Valuable materials have been recovered responsibly.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DEVICE INFORMATION -->
+
+        <div class="info-section">
+
+            <h2 class="section-title">
+                Device Information
+            </h2>
+
+            <div class="info-grid">
+
+                <div class="info-box">
+
+                    <span>Brand</span>
+
+                    <strong id="brand">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>Model</span>
+
+                    <strong id="model">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>Weight</span>
+
+                    <strong id="weight">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>Condition</span>
+
+                    <strong id="condition">
+                        -
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- REWARD -->
+
+        <div class="reward">
+
+            <div>
+
+                <h2>
+                    ♻️ Recycling Reward
+                </h2>
+
+                <p>
+                    Green points earned from responsible recycling.
+                </p>
+
+            </div>
+
+            <div class="points" id="reward">
+                0 Points
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // Get registered device
+
+        const device =
+            JSON.parse(
+                localStorage.getItem("ewasteDevice")
+            );
+
+
+        // If there is no registered device
+
+        if (!device) {
+
+            document.getElementById("deviceArea").innerHTML = `
+
+                <div class="no-device">
+
+                    <h2>No Device Registered</h2>
+
+                    <p>
+                        You need to register an e-waste device before you can track it.
+                    </p>
+
+                    <a href="register.html" class="register-btn">
+                        Register Device
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+        else {
+
+            // Show device information
+
+            document.getElementById("deviceArea").innerHTML = `
+
+                <div class="device-card">
+
+                    <div class="device-header">
+
+                        <div>
+
+                            <h2>
+                                ${device.brand} ${device.model}
+                            </h2>
+
+                            <p class="tracking-id">
+                                Tracking ID: ${device.id}
+                            </p>
+
+                        </div>
+
+                        <div class="status">
+                            🟢 ${device.status}
+                        </div>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            // Device information
+
+            document.getElementById("brand").textContent =
+                device.brand || "-";
+
+            document.getElementById("model").textContent =
+                device.model || "-";
+
+            document.getElementById("weight").textContent =
+                device.weight ? device.weight + " kg" : "-";
+
+            document.getElementById("condition").textContent =
+                device.condition || "-";
+
+
+            // Reward
+
+            document.getElementById("reward").textContent =
+                (device.reward || 0) + " Points";
+
+
+            /*
+                UPDATE LIFECYCLE
+                ACCORDING TO DEVICE STATUS
+            */
+
+            const status = device.status;
+
+
+            if (
+                status === "Registered"
+            ) {
+
+                setCompleted("registered");
+
+            }
+
+
+            else if (
+                status === "Pickup Scheduled"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCurrent("pickup");
+
+            }
+
+
+            else if (
+                status === "Collected"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCompleted("collected");
+
+                setCurrent("collected");
+
+            }
+
+
+            else if (
+                status === "Collection Hub"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCompleted("collected");
+
+                setCompleted("hub");
+
+                setCurrent("hub");
+
+            }
+
+
+            else if (
+                status === "Certified Recycler"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCompleted("collected");
+
+                setCompleted("hub");
+
+                setCompleted("recycler");
+
+                setCurrent("recycler");
+
+            }
+
+
+            else if (
+                status === "Processing"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCompleted("collected");
+
+                setCompleted("hub");
+
+                setCompleted("recycler");
+
+                setCompleted("processing");
+
+                setCurrent("processing");
+
+            }
+
+
+            else if (
+                status === "Recycled"
+            ) {
+
+                setCompleted("registered");
+
+                setCompleted("pickup");
+
+                setCompleted("collected");
+
+                setCompleted("hub");
+
+                setCompleted("recycler");
+
+                setCompleted("processing");
+
+                setCompleted("recycled");
+
+            }
+
+        }
+
+
+        // Mark step as completed
+
+        function setCompleted(id) {
+
+            const element =
+                document.getElementById(id);
+
+            if (element) {
+
+                element.classList.add("completed");
+
+            }
+
+        }
+
+
+        // Mark step as current
+
+        function setCurrent(id) {
+
+            const element =
+                document.getElementById(id);
+
+            if (element) {
+
+                element.classList.add("current");
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

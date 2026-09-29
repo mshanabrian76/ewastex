@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>E-WasteX - Rewards</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f1f8f4;
+            color: #173b2b;
+        }
+
+        .navbar {
+            background: #0b3d2e;
+            color: white;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #60766b;
+        }
+
+        .success {
+            background: #dff5e7;
+            border: 1px solid #9bd3ad;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .success h2 {
+            color: #168044;
+            margin-bottom: 8px;
+        }
+
+        .points-card {
+            background: #0b3d2e;
+            color: white;
+            border-radius: 18px;
+            padding: 35px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .points-card h3 {
+            font-size: 18px;
+            font-weight: normal;
+            margin-bottom: 12px;
+        }
+
+        .points {
+            font-size: 55px;
+            font-weight: bold;
+            color: #8ee6a9;
+        }
+
+        .points-label {
+            margin-top: 5px;
+            color: #c9e7d4;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #64776d;
+            line-height: 1.5;
+        }
+
+        .value {
+            font-size: 28px;
+            font-weight: bold;
+            color: #168044;
+            margin-bottom: 8px;
+        }
+
+        .rewards-section {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .rewards-section h2 {
+            margin-bottom: 20px;
+        }
+
+        .reward-item {
+            border: 1px solid #dce8e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .reward-info h3 {
+            margin-bottom: 6px;
+        }
+
+        .reward-info p {
+            color: #697a71;
+            font-size: 14px;
+        }
+
+        .redeem-btn {
+            background: #168044;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .redeem-btn:hover {
+            background: #106b37;
+        }
+
+        .redeem-btn:disabled {
+            background: #aab8af;
+            cursor: not-allowed;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 13px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .dashboard-btn {
+            background: #0b3d2e;
+            color: white;
+        }
+
+        .track-btn {
+            background: #e1f1e7;
+            color: #0b3d2e;
+        }
+
+        .message {
+            display: none;
+            background: #dff5e7;
+            color: #176c3a;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 750px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+            }
+
+            .reward-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .points {
+                font-size: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+
+        <div class="logo">
+            ♻️ E-WasteX
+        </div>
+
+        <div class="nav-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="track.html">Track Device</a>
+        </div>
+
+    </div>
+
+
+    <div class="container">
+
+        <!-- HEADER -->
+        <div class="header">
+            <h1>Rewards & Impact</h1>
+            <p>Thank you for helping create a cleaner and more sustainable future.</p>
+        </div>
+
+
+        <!-- SUCCESS MESSAGE -->
+        <div class="success">
+
+            <h2>♻️ Recycling Completed!</h2>
+
+            <p>
+                Your electronic device has successfully completed the recycling process.
+            </p>
+
+        </div>
+
+
+        <!-- POINTS -->
+        <div class="points-card">
+
+            <h3>Your Green Points</h3>
+
+            <div class="points" id="points">
+                0
+            </div>
+
+            <div class="points-label">
+                Green Points
+            </div>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="grid">
+
+            <div class="card">
+
+                <h3>📱 Device</h3>
+
+                <div class="value" id="deviceName">
+                    -
+                </div>
+
+                <p id="trackingID">
+                    Tracking ID: -
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>⚖️ E-Waste Diverted</h3>
+
+                <div class="value" id="weight">
+                    0 kg
+                </div>
+
+                <p>
+                    Waste successfully diverted from landfills.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>🌱 Environmental Impact</h3>
+
+                <div class="value">
+                    Positive
+                </div>
+
+                <p>
+                    Your recycling contributes to a cleaner environment.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- REWARDS -->
+        <div class="rewards-section">
+
+            <h2>🎁 Available Rewards</h2>
+
+            <div class="reward-item">
+
+                <div class="reward-info">
+
+                    <h3>₹500 Eco Voucher</h3>
+
+                    <p>
+                        Redeem with 500 Green Points.
+                    </p>
+
+                </div>
+
+                <button
+                    class="redeem-btn"
+                    id="reward500"
+                    onclick="redeemReward(500, '₹500 Eco Voucher')">
+
+                    Redeem
+
+                </button>
+
+            </div>
+
+
+            <div class="reward-item">
+
+                <div class="reward-info">
+
+                    <h3>₹1,000 Eco Voucher</h3>
+
+                    <p>
+                        Redeem with 1,000 Green Points.
+                    </p>
+
+                </div>
+
+                <button
+                    class="redeem-btn"
+                    id="reward1000"
+                    onclick="redeemReward(1000, '₹1,000 Eco Voucher')">
+
+                    Redeem
+
+                </button>
+
+            </div>
+
+
+            <div class="reward-item">
+
+                <div class="reward-info">
+
+                    <h3>🌱 Plant a Tree</h3>
+
+                    <p>
+                        Use 750 Green Points to support tree planting.
+                    </p>
+
+                </div>
+
+                <button
+                    class="redeem-btn"
+                    id="reward750"
+                    onclick="redeemReward(750, 'Plant a Tree')">
+
+                    Redeem
+
+                </button>
+
+            </div>
+
+
+            <div
+                class="message"
+                id="message">
+            </div>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+        <div class="buttons">
+
+            <a
+                href="dashboard.html"
+                class="btn dashboard-btn">
+
+                ← Back to Dashboard
+
+            </a>
+
+            <a
+                href="track.html"
+                class="btn track-btn">
+
+                Track Device
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // Get the saved device
+        let device = JSON.parse(
+            localStorage.getItem("ewasteDevice")
+        );
+
+
+        // If no device exists
+        if (!device) {
+
+            document.getElementById("deviceName").textContent =
+                "No device";
+
+            document.getElementById("trackingID").textContent =
+                "No tracking ID";
+
+        }
+
+        else {
+
+            // Device name
+            document.getElementById("deviceName").textContent =
+                device.brand + " " + device.model;
+
+
+            // Tracking ID
+            document.getElementById("trackingID").textContent =
+                "Tracking ID: " + device.id;
+
+
+            // Weight
+            document.getElementById("weight").textContent =
+                (parseFloat(device.weight) || 0) + " kg";
+
+
+            // Green Points
+            document.getElementById("points").textContent =
+                device.reward || 0;
+
+        }
+
+
+        // Redeem reward
+        function redeemReward(cost, rewardName) {
+
+            if (!device) {
+
+                showMessage(
+                    "No registered device found."
+                );
+
+                return;
+            }
+
+
+            let currentPoints =
+                Number(device.reward) || 0;
+
+
+            if (currentPoints < cost) {
+
+                showMessage(
+                    "You need " +
+                    (cost - currentPoints) +
+                    " more Green Points."
+                );
+
+                return;
+            }
+
+
+            // Remove points
+            device.reward =
+                currentPoints - cost;
+
+
+            // Save new points
+            localStorage.setItem(
+                "ewasteDevice",
+                JSON.stringify(device)
+            );
+
+
+            // Update screen
+            document.getElementById("points").textContent =
+                device.reward;
+
+
+            showMessage(
+                "✓ " +
+                rewardName +
+                " redeemed successfully!"
+            );
+
+        }
+
+
+        // Show message
+        function showMessage(text) {
+
+            const message =
+                document.getElementById("message");
+
+            message.textContent = text;
+
+            message.style.display = "block";
+
+        }
+
+    </script>
+
+</body>
+</html>
